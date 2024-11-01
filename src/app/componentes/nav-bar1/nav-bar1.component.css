@@ -1,0 +1,90 @@
+/* Estilos generales */
+* {
+  margin: -5px;
+  padding: 1px;
+  color: #f2f5f7;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav {
+  height: 4.5rem;
+  width: 100vw;
+  background-color: #131418;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  position: fixed;
+  z-index: 10;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  width: 100%;
+  padding: 0 0.7vw;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links a{
+  text-decoration: none;
+  color: #f2f5f7;
+  transition: color 0.3s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-links a:hover {
+  color: red;
+}
+
+.nav-links li {
+  margin-left: 1vw;
+}
+
+
+.home-link {
+  margin-left: auto;
+}
+
+/* Estilos para los botones */
+.login-button {
+  background-color: transparent;
+  border: 1.5px solid #f2f5f7;
+  border-radius: 2em;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-button + .login-button {
+  margin-left: 1vw;
+}
+
+.login-button:hover {
+  color: #131418;
+  background-color: #f2f5f7;
+  border: 1.5px solid #f2f5f7;
+  transition: all ease-in-out 350ms;
+}
+
+
+@media screen and (max-width: 800px) {
+  nav {
+    position: fixed;
+    z-index: 3;
+  }
+  .nav-links {
+    flex-direction: column;
+    background: #131418;
+    height: 100vh;
+    width: 100%;
+    clip-path: circle(50px at 90% -20%);
+    transition: all 1s ease-out;
+    pointer-events: none;
+  }
+}
