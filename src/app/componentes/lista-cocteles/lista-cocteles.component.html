@@ -1,0 +1,36 @@
+<div *ngIf="Listacocktail.length > 0; else loading">
+  <h2>Cócteles</h2>
+
+  <!-- Filtros -->
+  <div class="filters">
+    <label for="filterName">Filtrar por nombre: </label>
+    <input type="text" id="filterName" [(ngModel)]="filterName" (ngModelChange)="applyFilters()">
+
+    <label for="filterIngredient">  Filtrar por ingrediente: </label>
+    <input type="text" id="filterIngredient" [(ngModel)]="filterIngredient" (ngModelChange)="applyFilters()">
+
+    <div class="alcohol-filters">
+      <button (click)="filterByAlcohol('Vodka')">Vodka</button>
+      <button (click)="filterByAlcohol('Gin')">Gin</button>
+      <button (click)="filterByAlcohol('Rum')">Ron</button>
+      <button (click)="filterByAlcohol('Whiskey')">Whiskey</button>
+      <button (click)="filterByAlcohol('Tequila')">Tequila</button>
+    </div>
+
+    <button (click)="resetFilters()" class="reset-button">Resetear Filtros</button>
+  </div>
+
+  <!-- Lista de cócteles -->
+  <ul>
+    <li *ngFor="let cocktail of filteredCocktails">
+      <h3>{{ cocktail.strDrink }}</h3>
+      <a [routerLink]="['/coctel', cocktail.strDrink]">
+        <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}" width="100">
+      </a>
+    </li>
+  </ul>
+</div>
+
+<ng-template #loading>
+  <p>Cargando cócteles...</p>
+</ng-template>

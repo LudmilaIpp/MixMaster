@@ -1,0 +1,67 @@
+<div class="container">
+  <h2>📝 Registro</h2>
+  <form [formGroup]="formulario" (ngSubmit)="sacarDelFormulario()" #registerFormDir="ngForm">
+    <!-- Campo de Usuario -->
+    <div class="form-group">
+      <label for="username">👤 Usuario</label>
+      <input
+        type="text"
+        id="username"
+        class="form-control"
+        placeholder="Ingresa tu usuario"
+        formControlName="username"
+        [ngClass]="{'is-invalid': formulario.get('username')?.invalid && (formulario.get('username')?.dirty || formulario.get('username')?.touched)}"
+      />
+      <div *ngIf="formulario.get('username')?.invalid && (formulario.get('username')?.dirty || formulario.get('username')?.touched)" class="invalid-feedback">
+        <div *ngIf="formulario.get('username')?.errors?.['required']">⚠️ El usuario es requerido.</div>
+        <div *ngIf="formulario.get('username')?.errors?.['minlength']">⚠️ Debe tener al menos 3 caracteres.</div>
+        <div *ngIf="formulario.get('username')?.errors?.['maxlength']">⚠️ No debe tener más de 15 caracteres.</div>
+      </div>
+    </div>
+
+    <!-- Campo de Contraseña -->
+    <div class="form-group">
+      <label for="password">🔑 Contraseña</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        placeholder="Ingresa tu contraseña"
+        formControlName="password"
+        [ngClass]="{'is-invalid': formulario.get('password')?.invalid && (formulario.get('password')?.dirty || formulario.get('password')?.touched)}"
+      />
+      <div *ngIf="formulario.get('password')?.invalid && (formulario.get('password')?.dirty || formulario.get('password')?.touched)" class="invalid-feedback">
+        <div *ngIf="formulario.get('password')?.errors?.['required']">⚠️ La contraseña es requerida.</div>
+        <div *ngIf="formulario.get('password')?.errors?.['minlength']">⚠️ Debe tener al menos 3 caracteres.</div>
+        <div *ngIf="formulario.get('password')?.errors?.['maxlength']">⚠️ No debe tener más de 15 caracteres.</div>
+      </div>
+    </div>
+
+    <!-- Campo de Confirmación de Contraseña -->
+    <div class="form-group">
+      <label for="confirmPassword">🔒 Confirmar contraseña</label>
+      <input
+        type="password"
+        id="confirmPassword"
+        class="form-control"
+        placeholder="Repite tu contraseña"
+        formControlName="confirmPassword"
+        [ngClass]="{'is-invalid': formulario.get('confirmPassword')?.invalid && (formulario.get('confirmPassword')?.dirty || formulario.get('confirmPassword')?.touched)}"
+      />
+      <div *ngIf="formulario.get('confirmPassword')?.invalid && (formulario.get('confirmPassword')?.dirty || formulario.get('confirmPassword')?.touched)" class="invalid-feedback">
+        <div *ngIf="formulario.get('confirmPassword')?.errors?.['required']">⚠️ Es necesario confirmar la contraseña.</div>
+        <div *ngIf="formulario.errors?.['mismatch']">⚠️ Las contraseñas no coinciden.</div>
+      </div>
+    </div>
+
+    <!-- Botón de Registro -->
+    <button type="submit" class="btn btn-success" [disabled]="!formulario.valid">
+      ✔️ Registrarse
+    </button>
+  </form>
+
+  <!-- Enlace de Iniciar Sesión -->
+  <div class="register-link">
+    <p>¿Ya tienes cuenta? <a routerLink="/inicioSesion">Inicia sesión aquí</a></p>
+  </div>
+</div>

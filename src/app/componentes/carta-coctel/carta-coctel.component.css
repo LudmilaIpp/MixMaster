@@ -1,0 +1,131 @@
+/* Estilos generales */
+.cocktail-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del cóctel */
+h2 {
+  font-size: 2rem;
+  font-family: 'Liberation Sans', sans-serif;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Instrucciones del cóctel */
+p {
+  font-size: 1.1rem;
+  font-family: 'Liberation Sans', sans-serif;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Ingredientes */
+h3 {
+  font-size: 1.5rem;
+  font-family: 'Liberation Sans', sans-serif;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+ul {
+  font-family: 'Liberation Sans', sans-serif;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  font-size: 1rem;
+  color: #555;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+li strong {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Botones */
+button {
+  background-color: #e94e77;
+  font-family: 'Liberation Sans', sans-serif;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #d43c65;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Contenedor principal */
+div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Cargando */
+ng-template p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Componente de comentarios */
+app-comentario {
+  margin-top: 30px;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+  text-align: center;
+}
+
+/* Asegurando que los botones no se amontonen */
+button {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  text-align: center;
+}

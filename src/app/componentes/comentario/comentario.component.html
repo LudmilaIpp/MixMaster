@@ -1,0 +1,26 @@
+<div class="comentarios">
+  <h3>Comentarios</h3>
+
+  <div *ngIf="comentarios.length > 0; else noComments">
+    <div *ngFor="let comentario of comentarios" class="comentario">
+      <p><strong>{{ comentario.nombreUsuario }}</strong>:</p>
+      <p>{{ comentario.comentario }}</p>
+      <button *ngIf="comentario.nombreUsuario === localStorage.getItem('username')"
+              class="delete-button"
+              (click)="borrarComentario(comentario.id,comentario.nombreUsuario)">
+        ELIMINAR
+      </button>
+    </div>
+  </div>
+  <ng-template #noComments>
+    <p>No hay comentarios aún.</p>
+  </ng-template>
+
+  <div *ngIf="!localStorage.getItem('username')">
+    <p>Inicia sesión para dejar un comentario.</p>
+  </div>
+  <div *ngIf="localStorage.getItem('username')">
+    <textarea [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>
+    <button (click)="agregarComentario()">AGREGAR COMENTARIO</button>
+  </div>
+</div>

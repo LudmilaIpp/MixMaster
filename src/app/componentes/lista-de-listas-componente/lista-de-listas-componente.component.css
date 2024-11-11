@@ -1,0 +1,99 @@
+h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-family: 'Liberation Sans', sans-serif;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: slategrey;
+  margin-top: 20px;
+  font-family: 'Liberation Sans', sans-serif;
+}
+
+.cocktail-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cocktail-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.cocktail-card:hover {
+  transform: translateY(-5px);
+}
+
+.cocktail-image {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.cocktail-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.no-items {
+  font-style: italic;
+  color: #888;
+}
+.btn-remove {
+  background-color: #f44336; /* Rojo vibrante */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.btn-remove:hover {
+  background-color: #d32f2f;
+}
+.btn-remove-all {
+  background-color: white; /* Rojo vibrante */
+  color: #f44336;
+  border-radius: 5px;
+  border-color: #f44336;
+  border-style: solid;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.btn-remove-all:hover {
+  background-color: #d32f2f;
+  color: white;
+}
+/* Estilo para el botón de eliminar lista vacía */
+.btn-remove-list {
+  background-color: #ff9800; /* Color naranja */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.btn-remove-list:hover {
+  background-color: #f57c00;
+}
+

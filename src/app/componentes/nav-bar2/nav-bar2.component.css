@@ -1,0 +1,98 @@
+/* Estilos generales */
+* {
+  margin: -5px;
+  padding: 1px;
+  color: snow;
+  font-family: 'Liberation Sans', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+nav {
+  height: 4.5rem;
+  top: 75px;
+  width: 100vw;
+  background-color: #0f1014;
+  display: flex;
+  position: fixed;
+  z-index: 10;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between; /* Espacio entre las listas y la barra */
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links.left {
+  justify-content: flex-start;
+}
+
+.nav-links.right {
+  justify-content: flex-end;
+}
+
+.nav-links li {
+  margin: 0 1vw; /* Espaciado entre los botones */
+}
+
+/* Estilos para la barra de búsqueda */
+.search-bar {
+  height: 40px; /* Altura de la barra de búsqueda */
+  width: 250px; /* Ancho de la barra de búsqueda */
+  border: 1px solid snow; /* Borde de la barra */
+  border-radius: 4px; /* Bordes redondeados */
+  padding: 0 10px; /* Espaciado interno */
+  background-color: #fff; /* Fondo blanco */
+  color: #131418; /* Color del texto */
+  font-size: 1rem; /* Tamaño de fuente */
+}
+
+/* Estilos del botón */
+.login-button {
+  background-color: transparent;
+  border: none; /* Eliminé el borde */
+  border-radius: 2em;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 350ms ease-in-out; /* Transición más suave */
+}
+
+.login-button:hover {
+  transform: scale(1.1); /* Agranda el botón al pasar el mouse */
+  box-shadow: none; /* Elimina la sombra al pasar el mouse */
+  color: #e94e77;
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 800px) {
+  nav {
+    position: fixed;
+    z-index: 3;
+  }
+
+  .nav-links {
+    flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+  }
+
+  .nav-links.left,
+  .nav-links.right {
+    justify-content: center;
+  }
+
+  .search-bar {
+    width: 80%; /* Ancho más adecuado para pantallas pequeñas */
+    margin: 10px 0; /* Margen para separación */
+  }
+}

@@ -1,0 +1,16 @@
+<body>
+<nav>
+  <div class="nav-container">
+    <ul class="nav-links left">
+      <li><button class="login-button" routerLink="mapa-page">Mapa</button></li>
+      <li><button class="login-button" (click)="goToRandomCocktail()">Coctel Random</button></li>
+    </ul>
+    <input type="text" class="search-bar" placeholder="Buscar..."> <!-- Barra de búsqueda -->
+    <ul class="nav-links right">
+      <li><button class="login-button" routerLink="favoritos">Favoritos</button></li>
+      <li><button class="login-button" routerLink="guardados/:nombre">Mis listas</button></li>
+    </ul>
+  </div>
+</nav>
+</body>
+

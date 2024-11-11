@@ -1,0 +1,12 @@
+<div class="map-container">
+  <div class="select-container">
+    <label for="country-select">🌍 Selecciona un país: </label>
+    <select id="country-select" class="country-select" (change)="onCountryChange($event)">
+      <option value="argentina">🇦🇷 Argentina</option>
+      <option value="us">🇺🇸 Estados Unidos</option>
+    </select>
+  </div>
+
+  <!-- Mapa donde se muestran los cócteles -->
+  <div id="map"></div>
+</div>

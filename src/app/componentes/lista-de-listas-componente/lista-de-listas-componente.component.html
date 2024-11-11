@@ -1,0 +1,46 @@
+<div *ngIf="usuario; else loading">
+  <h2>{{ usuario.usuario }} - Listas de Cócteles</h2>
+
+  <!-- Recorrer cada lista dentro de listaDelista -->
+  <div *ngFor="let lista of usuario.listaDelista">
+    <h3>{{ lista.nombre }}</h3> <!-- Título de la lista de cócteles -->
+
+    <!-- Mostrar los cócteles de la lista -->
+    <div *ngIf="lista.lista.length > 0; else noItems">
+      <div class="cocktail-container">
+        <div *ngFor="let cocktail of lista.lista" class="cocktail-card">
+          <!-- Redirigir al detalle del cóctel cuando se hace clic en la imagen -->
+          <a [routerLink]="['/coctel', cocktail.strDrink]" class="cocktail-link">
+            <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}" class="cocktail-image" />
+          </a>
+          <h4>{{ cocktail.strDrink }}</h4>
+
+          <!-- Botón de borrar individual -->
+          <button (click)="eliminarDeLista(cocktail, lista)" class="btn-remove">
+            ELIMINAR
+          </button>
+        </div>
+      </div>
+
+      <!-- Botón para eliminar toda la lista -->
+      <button (click)="eliminarTodaLaLista(lista)" class="btn-remove-all">
+        ELIMINAR LISTA
+      </button>
+    </div>
+
+    <!-- Mensaje si la lista está vacía -->
+    <ng-template #noItems>
+      <p>No hay cócteles en esta lista.</p>
+
+      <!-- Botón para eliminar la lista vacía -->
+      <button *ngIf="lista.lista.length === 0" (click)="eliminarListaVacia(lista)" class="btn-remove-list">
+        Eliminar lista vacía
+      </button>
+    </ng-template>
+  </div>
+</div>
+
+<!-- Mensaje mientras se carga el usuario -->
+<ng-template #loading>
+  <p>Cargando los datos del usuario...</p>
+</ng-template>

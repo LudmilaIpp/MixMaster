@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>🔒 Iniciar Sesión</h2>
+  <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+    <!-- Campo de Usuario -->
+    <div class="form-group">
+      <label for="username">👤 Usuario</label>
+      <input
+        type="text"
+        id="username"
+        class="form-control"
+        placeholder="Ingresa tu usuario"
+        [(ngModel)]="loginModel.username"
+        name="username"
+        required
+        [ngClass]="{'is-invalid': loginForm.submitted && !loginModel.username}"
+      />
+      <div *ngIf="loginForm.submitted && !loginModel.username" class="invalid-feedback">
+        ⚠️ El usuario es requerido.
+      </div>
+    </div>
+
+    <!-- Campo de Contraseña -->
+    <div class="form-group">
+      <label for="password">🔑 Contraseña</label>
+      <input
+        type="password"
+        id="password"
+        class="form-control"
+        placeholder="Ingresa tu contraseña"
+        [(ngModel)]="loginModel.password"
+        name="password"
+        required
+        [ngClass]="{'is-invalid': loginForm.submitted && !loginModel.password}"
+      />
+      <div *ngIf="loginForm.submitted && !loginModel.password" class="invalid-feedback">
+        ⚠️ La contraseña es requerida.
+      </div>
+    </div>
+
+    <!-- Botón de Iniciar Sesión -->
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">
+      Iniciar Sesión
+    </button>
+  </form>
+
+  <!-- Enlace de Registro -->
+  <div class="register-link">
+    <p>¿No tienes cuenta? <a routerLink="/registro">Regístrate aquí</a></p>
+  </div>
+</div>

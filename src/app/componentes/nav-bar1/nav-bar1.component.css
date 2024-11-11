@@ -1,0 +1,165 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Liberation Sans', sans-serif;
+  color: snow;
+}
+
+body {
+  background-color: #0f1014;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+nav {
+  height: 4.5rem;
+  width: 100vw;
+  background-color: #0f1014;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+/* Lista de enlaces */
+.nav-links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  list-style: none;
+  flex-grow: 1;
+}
+
+.nav-links li {
+  margin-left: 2rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Estilos de los enlaces */
+.nav-links a {
+  text-decoration: none;
+  color: snow;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.nav-links a:hover {
+  color: #e94e77;
+  transform: translateY(-3px);
+}
+
+/* Estilos del contenedor de los botones */
+.right-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+/* Estilos para los botones */
+.login-button {
+  background-color: transparent;
+  border: 2px outset snow;
+  border-radius: 30px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+}
+
+.login-button:hover {
+  color: #131418;
+  background-color: snow;
+  border-color: #e94e77;
+  border-style: solid;
+}
+
+.login-button:focus {
+  outline: none;
+}
+
+/* Estilos para logout */
+.logout-button {
+  background-color: transparent;
+  border: 2px outset snow;
+  border-radius: 30px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 1rem;
+}
+
+.logout-button:hover {
+  color: snow;
+  background-color: #e94e77;
+  border-color: snow;
+  border-style: solid;
+}
+
+/* Home link */
+.home-link {
+  margin-left: auto;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: snow;
+}
+
+/* Media Queries - Mobile */
+@media screen and (max-width: 800px) {
+  nav {
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #131418;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  nav:hover .nav-links {
+    transform: translateX(0); /* Desliza el menú al pasar el mouse */
+  }
+
+  .nav-links a {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: snow;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #e94e77;
+  }
+
+  /* Botones en el móvil */
+  .right-buttons {
+    flex-direction: column;
+  }
+
+  .login-button {
+    margin-left: 0;
+    margin-bottom: 1rem;
+  }
+}

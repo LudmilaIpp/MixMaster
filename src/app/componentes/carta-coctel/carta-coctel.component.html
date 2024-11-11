@@ -1,0 +1,43 @@
+<div *ngIf="cocktail; else loading">
+  <h2>{{ cocktail.strDrink }}</h2>
+  <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}" class="cocktail-image" />
+  <h3>Preparación:</h3>
+  <p>{{ cocktail.strInstructionsES }}</p>
+
+  <h3>Ingredientes:</h3>
+  <ul>
+    <li *ngFor="let ingredient of getIngredients(cocktail)">
+      <strong>{{ ingredient[0] }}:</strong> {{ ingredient[1] }}
+    </li>
+  </ul>
+
+  <button (click)="agregarAFavoritos()">AGREGAR A FAVORITOS</button>
+  <!-- Botón para agregar a lista -->
+  <button (click)="abrirModal()">AGREGAR A LISTA</button>
+
+  <!-- Ventana modal -->
+  <div *ngIf="mostrarModal" class="modal">
+    <div class="modal-content">
+      <h2>Selecciona o crea una lista</h2>
+
+      <!-- Lista de listas existentes del usuario -->
+      <ul>
+        <li *ngFor="let lista of listasDeUsuario">
+          <button (click)="agregarALista(lista.nombre)">{{ lista.nombre }}</button>
+        </li>
+      </ul>
+
+      <!-- Opción para crear una nueva lista -->
+      <input [(ngModel)]="nombreNuevaLista" placeholder="Crear nueva lista" />
+      <button (click)="crearYAgregarALista()">Crear y agregar a nueva lista</button>
+
+      <button (click)="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <p>Cargando el cóctel...</p>
+</ng-template>
+
+<app-comentario [nombreCoctel]="cocktail.strDrink"></app-comentario>

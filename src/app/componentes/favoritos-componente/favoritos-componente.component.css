@@ -1,0 +1,110 @@
+/* Estilos generales */
+.favorites-title {
+  font-size: 2rem;
+  font-family: 'Liberation Sans', sans-serif;
+  color: #333;
+  text-align: center;
+  margin-top: 30px;
+}
+.p{
+  font-size: 2rem;
+  color: red;
+  text-align: center;
+  margin-top: 30px;
+
+}
+
+.favorites-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.cocktail-card {
+  background-color: #fff;
+  font-family: 'Liberation Sans', sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 15px;
+  padding: 20px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.cocktail-card:hover {
+  transform: translateY(-5px);
+}
+
+.cocktail-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.cocktail-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 10px 0;
+}
+
+.cocktail-body {
+  margin-bottom: 20px;
+}
+
+h4 {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.ingredients-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-list li {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.cocktail-footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.fav-button {
+  background-color: #f44336; /* Rojo vibrante */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.fav-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Mensajes */
+.no-favorites-msg, .loading-msg {
+  text-align: center;
+  color: #777;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}

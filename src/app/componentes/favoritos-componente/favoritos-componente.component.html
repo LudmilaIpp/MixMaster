@@ -1,0 +1,37 @@
+<div *ngIf="usuario; else loading">
+  <h2 class="favorites-title">Favoritos</h2>
+  <div *ngIf="listaDeFavs.length > 0; else noFavorites">
+    <div class="favorites-container">
+      <div *ngFor="let cocktail of listaDeFavs" class="cocktail-card">
+        <div class="cocktail-header">
+          <a [routerLink]="['/coctel', cocktail.strDrink]" class="cocktail-link">
+            <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}" class="cocktail-image" />
+          </a>
+          <h3>{{ cocktail.strDrink }}</h3>
+        </div>
+
+        <div class="cocktail-body">
+          <h4>Ingredientes:</h4>
+          <ul class="ingredients-list">
+            <li *ngFor="let ingredient of getIngredients(cocktail)">
+              <strong>{{ ingredient[0] }}:</strong> {{ ingredient[1] }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="cocktail-footer">
+          <button (click)="eliminarDeFavoritos(cocktail)" class="fav-button">ELIMINAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje si no hay favoritos -->
+  <ng-template #noFavorites>
+    <p class="no-favorites-msg">No tienes cócteles en favoritos. Agrega algunos para verlos aquí.</p>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p class="loading-msg">Cargando los favoritos...</p>
+</ng-template>
