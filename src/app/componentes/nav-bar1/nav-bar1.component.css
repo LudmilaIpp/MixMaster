@@ -44,16 +44,33 @@ nav {
 /* Estilos de los enlaces */
 .nav-links a {
   text-decoration: none;
-  color: snow;
-  font-size: 1.1rem;
+  color: #e94e77;
+  font-size: 30px;
   font-weight: 500;
+  position: relative; /* Necesario para posicionar el pseudo-elemento */
   transition: color 0.3s, transform 0.2s;
 }
 
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0; /* La línea comienza con un ancho de 0 */
+  height: 3px; /* Altura de la línea */
+  background-color: silver;
+  transition: width 0.3s ease; /* Animación para expandir la línea */
+}
+
 .nav-links a:hover {
-  color: #e94e77;
+  color: silver;
   transform: translateY(-3px);
 }
+
+.nav-links a:hover::after {
+  width: 100%; /* La línea se expande completamente al pasar el mouse */
+}
+
 
 /* Estilos del contenedor de los botones */
 .right-buttons {

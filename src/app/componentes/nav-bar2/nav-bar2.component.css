@@ -26,36 +26,18 @@ nav {
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between; /* Espacio entre las listas y la barra */
+  justify-content: space-between; /* Espacio entre las listas */
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-}
-
-.nav-links.left {
-  justify-content: flex-start;
-}
-
-.nav-links.right {
-  justify-content: flex-end;
+  justify-content: space-evenly; /* Distribuye los botones de manera uniforme */
+  width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 .nav-links li {
-  margin: 0 1vw; /* Espaciado entre los botones */
-}
-
-/* Estilos para la barra de búsqueda */
-.search-bar {
-  height: 40px; /* Altura de la barra de búsqueda */
-  width: 250px; /* Ancho de la barra de búsqueda */
-  border: 1px solid snow; /* Borde de la barra */
-  border-radius: 4px; /* Bordes redondeados */
-  padding: 0 10px; /* Espaciado interno */
-  background-color: #fff; /* Fondo blanco */
-  color: #131418; /* Color del texto */
-  font-size: 1rem; /* Tamaño de fuente */
+  margin: 0; /* Elimina márgenes adicionales entre los botones */
 }
 
 /* Estilos del botón */
@@ -91,8 +73,4 @@ nav {
     justify-content: center;
   }
 
-  .search-bar {
-    width: 80%; /* Ancho más adecuado para pantallas pequeñas */
-    margin: 10px 0; /* Margen para separación */
-  }
 }
