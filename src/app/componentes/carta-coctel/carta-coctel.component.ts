@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {CoctelesBDDService} from '../../service/cocteles-bdd.service';
 import {NgForOf, NgIf} from '@angular/common';
@@ -23,23 +23,24 @@ import {FormsModule} from '@angular/forms';
 })
 export class CartaCoctelComponent  implements OnInit {
 
+  route = inject(ActivatedRoute);
+  coctelesService = inject(CoctelesBDDService);
+  usuarioService = inject(UsuariosBDDService);
+  elementRef = inject(ElementRef);
+
+
   cocktail: any;
   cocktailName: string = '';
   usuario: Usuario | undefined; // Usuario logueado
   mostrarModal: boolean = false; // Controlar si la ventana modal está visible
   nombreNuevaLista: string = ''; // Nombre de la nueva lista a crear
   listasDeUsuario: any[] = []; // Listas de listas del usuario
+  fav: String = 'AGREGAR A FAVORITOS';
 
-  constructor(
-    private route: ActivatedRoute,
-    private coctelesService: CoctelesBDDService,
-    private usuarioService: UsuariosBDDService
-  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.cocktailName = params.get('nombre')!;
-      console.log('Cocktail Name in ngOnInit:', this.cocktailName);
       this.getCocktailData(this.cocktailName);
 
     });
@@ -50,6 +51,12 @@ export class CartaCoctelComponent  implements OnInit {
         if (user && user.length > 0) {
           this.usuario = user[0];
           this.listasDeUsuario = this.usuario.listaDelista;
+          if (this.usuario.listaFavoritos.some((item: any) => item.strDrink === this.cocktail.strDrink))
+          {
+            this.fav = 'QUITAR DE FAVORITOS';
+            const boton = this.elementRef.nativeElement.querySelector('button');
+            boton.style.backgroundColor = 'red';
+          }
         }
       });
     }
@@ -93,27 +100,35 @@ export class CartaCoctelComponent  implements OnInit {
     if (!this.usuario.listaFavoritos.some((item: any) => item.strDrink === this.cocktail.strDrink)) {
       this.usuario.listaFavoritos.push(this.cocktail);
       this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
-        alert('Cóctel agregado a favoritos');
+        this.fav = 'QUITAR DE FAVORITOS';
+       const boton = this.elementRef.nativeElement.querySelector('button');
+       boton.style.backgroundColor = 'red';
       }, (error) => {
         console.error('Error al actualizar la lista de favoritos:', error);
         alert('Ocurrió un error al agregar el cóctel a favoritos');
       });
     } else {
-      alert('Este cóctel ya está en tus favoritos');
+      this.usuario.listaFavoritos = this.usuario.listaFavoritos.filter(favorito => favorito.strDrink !== this.cocktail.strDrink);
+      this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
+        this.fav = 'AGREGAR A FAVORITOS';
+        const boton = this.elementRef.nativeElement.querySelector('button');
+        boton.style.backgroundColor = '#d43c65';
+      }, (error) => {
+        console.error('Error al actualizar el usuario:', error);
+        alert('Hubo un problema al eliminar el cóctel de favoritos.');
+      });
     }
   }
 
-  // Mostrar la ventana modal
   abrirModal() {
     this.mostrarModal = true;
   }
 
-  // Cerrar la ventana modal
   cerrarModal() {
     this.mostrarModal = false;
   }
 
-  // Agregar cóctel a una lista existente
+
   agregarALista(nombreLista: string): void {
     if (!this.usuario) {
       alert('Debes iniciar sesión para agregar a una lista.');
@@ -123,7 +138,6 @@ export class CartaCoctelComponent  implements OnInit {
     let listaExistente = this.usuario.listaDelista.find((lista: any) => lista.nombre === nombreLista);
 
     if (listaExistente) {
-      // Verificar si el cóctel ya está en la lista
       if (!listaExistente.lista.some((item: any) => item.strDrink === this.cocktail.strDrink)) {
         listaExistente.lista.push(this.cocktail);
         this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
@@ -136,7 +150,6 @@ export class CartaCoctelComponent  implements OnInit {
     }
   }
 
-  // Crear nueva lista y agregar el cóctel
   crearYAgregarALista(): void {
     if (!this.usuario) {
       alert('Debes iniciar sesión para agregar a una lista.');
@@ -148,17 +161,14 @@ export class CartaCoctelComponent  implements OnInit {
       return;
     }
 
-    // Crear la nueva lista
     const nuevaLista = { nombre: this.nombreNuevaLista, lista: [this.cocktail] };
 
-    // Verificar si ya existe una lista con el mismo nombre
     const listaExistente = this.usuario.listaDelista.find((lista: any) => lista.nombre === this.nombreNuevaLista);
     if (listaExistente) {
       alert('Ya existe una lista con ese nombre.');
       return;
     }
 
-    // Agregar la nueva lista al usuario
     this.usuario.listaDelista.push(nuevaLista);
     this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
       alert('Lista creada y cóctel agregado');

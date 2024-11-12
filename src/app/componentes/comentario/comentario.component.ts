@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ComentariosBDDService} from '../../service/comentarios-bdd.service';
@@ -20,11 +20,12 @@ class AuthService {
 })
 export class ComentarioComponent implements OnInit{
 
+  comentariosService = inject(ComentariosBDDService);
+
   @Input() nombreCoctel!: string;
   comentarios: Comentario[] = [];
   nuevoComentario: string = '';
 
-  constructor(private comentariosService: ComentariosBDDService) {}
 
   ngOnInit() {
     this.obtenerComentarios();

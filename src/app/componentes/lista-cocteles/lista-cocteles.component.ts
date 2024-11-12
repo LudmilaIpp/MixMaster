@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ApiCoctelesService} from '../../service/api-cocteles.service';
 import {NgForOf, NgIf} from '@angular/common';
 import {Coctel} from '../../interfaces/coctel';
@@ -20,13 +20,15 @@ import {FormsModule} from '@angular/forms';
 })
 export class ListaCoctelesComponent implements OnInit {
 
+
+  coctelesBDD = inject(CoctelesBDDService);
+  cocktailService = inject(ApiCoctelesService);
+
   Listacocktail: any[] = [];
   filteredCocktails: any[] = [];
   filterName: string = '';
   filterIngredient: string = '';
   filterAlcohol: string = '';
-
-  constructor(private cocktailService: ApiCoctelesService, private coctelesBDD: CoctelesBDDService) { }
 
   ngOnInit(): void {
     this.getCoctelesBDD();

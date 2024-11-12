@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {Usuario} from '../../interfaces/usuario';
@@ -19,12 +19,13 @@ import {NgClass, NgIf} from '@angular/common';
 })
 export class InicioSesionComponenteComponent {
 
+  router = inject(Router);
+  usuarioService = inject(UsuariosBDDService);
+
   loginModel ={
     username: '',
     password: ''
   };
-
-  constructor(private router: Router, private usuarioService: UsuariosBDDService) {}
 
   onLogin() {
     const usuarioIngresado: Usuario = {
@@ -38,27 +39,29 @@ export class InicioSesionComponenteComponent {
   }
 
   traerUsuarioDeBDD(usuarioIngresado : Usuario) {
-    this.usuarioService.getUserByUsername(usuarioIngresado.usuario.toString()).subscribe(
-      {
-        error(err: any): void {
-          console.error(err);
-        },
-        next:(usuario: Usuario[]) => {
-          console.log(usuario)
-          if(usuario.find(usuario => usuario.contrasena.toString() === usuarioIngresado.contrasena.toString()
-                                             && usuario.usuario.toString() === usuarioIngresado.usuario.toString()))
-          {
-            localStorage.setItem('username', usuarioIngresado.usuario);
-            alert('Inicio de sesión exitoso');
-            this.router.navigate(['/home']).then(() => {
-              window.location.reload();
-            });
-          }else {
-            alert('Nombre de usuario o contraseña incorrectos');
-          }
+    this.usuarioService.getUserByUsername(usuarioIngresado.usuario.toString()).subscribe({
+      next: (usuario: Usuario[]) => {
+
+        console.log(usuario)
+
+        if (usuario.find(usuario => usuario.contrasena.toString() === usuarioIngresado.contrasena.toString()
+          && usuario.usuario.toString() === usuarioIngresado.usuario.toString())) {
+
+          localStorage.setItem('username', usuarioIngresado.usuario);
+          alert('Inicio de sesión exitoso');
+
+          this.router.navigate(['/home']).then(() => {
+            window.location.reload();
+          });
+
+        } else {
+          alert('Nombre de usuario o contraseña incorrectos');
         }
+      },
+      error(err: any): void {
+        console.error(err);
       }
-    );
+    });
   }
 
 }

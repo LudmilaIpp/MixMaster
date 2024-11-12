@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, inject, OnInit} from '@angular/core';
 import {ApiCoctelesService} from '../../service/api-cocteles.service';
 import {KeyValuePipe, NgForOf, NgIf} from '@angular/common';
 import {ComentarioComponent} from '../comentario/comentario.component';
@@ -22,17 +22,20 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './coctel-random.component.css'
 })
 export class CoctelRandomComponent implements OnInit {
+
+  cocktailService = inject(ApiCoctelesService);
+  coctelDbService = inject(CoctelesBDDService);
+  usuarioService = inject(UsuariosBDDService);
+  elementRef = inject(ElementRef);
+
   cocktail: any;
   usuario: Usuario | undefined;
   listasDeUsuario: any[] = [];
   nombreNuevaLista: string = '';
   mostrarModal: boolean = false;
+  fav: String = 'AGREGAR A FAVORITOS';
 
-  constructor(
-    private cocktailService: ApiCoctelesService,
-    private coctelDbService: CoctelesBDDService,
-    private usuarioService: UsuariosBDDService// Servicio para la base de datos
-  ) { }
+
 
   ngOnInit(): void {
     this.getRandomCocktail();
@@ -43,12 +46,18 @@ export class CoctelRandomComponent implements OnInit {
         if (user && user.length > 0) {
           this.usuario = user[0];
           this.listasDeUsuario = this.usuario.listaDelista;
+          if (!this.usuario.listaFavoritos.some((item: any) => item.strDrink === this.cocktail.strDrink))
+          {
+            this.fav = 'QUITAR DE FAVORITOS'
+            const boton = this.elementRef.nativeElement.querySelector('button');
+            boton.style.backgroundColor = 'red';
+          }
         }
       });
     }
   }
 
-  // Obtener un cóctel aleatorio
+  // coctel aleatorio con la api
   getRandomCocktail(): void {
     this.cocktailService.getRandomCocktail().subscribe(data => {
       this.cocktail = data.drinks[0];
@@ -57,7 +66,7 @@ export class CoctelRandomComponent implements OnInit {
     });
   }
 
-  // Comprobar si el cóctel ya existe en la base de datos y guardarlo si no existe
+  // comprobamos si el cóctel ya existe en la base de datos y si no lo guardamos
   checkAndSaveCocktail(cocktail: any): void {
     this.coctelDbService.getCoctelPorNombre(cocktail.strDrink).subscribe(existingCocktail => {
       console.log(existingCocktail)
@@ -93,13 +102,23 @@ export class CoctelRandomComponent implements OnInit {
     if (!this.usuario.listaFavoritos.some((item: any) => item.strDrink === this.cocktail.strDrink)) {
       this.usuario.listaFavoritos.push(this.cocktail);
       this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
-        alert('Cóctel agregado a favoritos');
+        this.fav = 'QUITAR DE FAVORITOS';
+        const boton = this.elementRef.nativeElement.querySelector('button');
+        boton.style.backgroundColor = 'red';
       }, (error) => {
         console.error('Error al actualizar la lista de favoritos:', error);
         alert('Ocurrió un error al agregar el cóctel a favoritos');
       });
     } else {
-      alert('Este cóctel ya está en tus favoritos');
+      this.usuario.listaFavoritos = this.usuario.listaFavoritos.filter(favorito => favorito.strDrink !== this.cocktail.strDrink);
+      this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
+        this.fav = 'AGREGAR A FAVORITOS';
+        const boton = this.elementRef.nativeElement.querySelector('button');
+        boton.style.backgroundColor = '#d43c65';
+      }, (error) => {
+        console.error('Error al actualizar el usuario:', error);
+        alert('Hubo un problema al eliminar el cóctel de favoritos.');
+      });
     }
   }
   // Mostrar la ventana modal
@@ -122,7 +141,6 @@ export class CoctelRandomComponent implements OnInit {
     let listaExistente = this.usuario.listaDelista.find((lista: any) => lista.nombre === nombreLista);
 
     if (listaExistente) {
-      // Verificar si el cóctel ya está en la lista
       if (!listaExistente.lista.some((item: any) => item.strDrink === this.cocktail.strDrink)) {
         listaExistente.lista.push(this.cocktail);
         this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
@@ -135,7 +153,6 @@ export class CoctelRandomComponent implements OnInit {
     }
   }
 
-  // Crear nueva lista y agregar el cóctel
   crearYAgregarALista(): void {
     if (!this.usuario) {
       alert('Debes iniciar sesión para agregar a una lista.');
@@ -147,17 +164,14 @@ export class CoctelRandomComponent implements OnInit {
       return;
     }
 
-    // Crear la nueva lista
     const nuevaLista = { nombre: this.nombreNuevaLista, lista: [this.cocktail] };
 
-    // Verificar si ya existe una lista con el mismo nombre
     const listaExistente = this.usuario.listaDelista.find((lista: any) => lista.nombre === this.nombreNuevaLista);
     if (listaExistente) {
       alert('Ya existe una lista con ese nombre.');
       return;
     }
 
-    // Agregar la nueva lista al usuario
     this.usuario.listaDelista.push(nuevaLista);
     this.usuarioService.updateUsuario(this.usuario).subscribe(() => {
       alert('Lista creada y cóctel agregado');

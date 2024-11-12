@@ -33,5 +33,11 @@
 </div>
 
 <ng-template #loading>
-  <p class="loading-msg">Cargando los favoritos...</p>
+  <div class="loading-container">
+    <p class="loading-msg">🔒 Debes iniciar sesión para guardar tus favoritos</p>
+    <button class="btn-primary" routerLink="/inicioSesion">
+      👉 Click aquí para iniciar sesión
+    </button>
+  </div>
 </ng-template>
+

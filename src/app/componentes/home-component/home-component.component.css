@@ -1,0 +1,115 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Liberation Sans', sans-serif;
+  color: snow;
+}
+
+body {
+  background-color: #131418;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-page {
+  padding: 2rem;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  color: #991815;
+  margin-bottom: 1rem;
+}
+
+.intro-text {
+  font-size: 1.2rem;
+  color: black;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.feature {
+  background-color: #1b1f24;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 48%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer; /* Esto hace que el cuadro se vea clickeable */
+}
+
+.feature:hover {
+  transform: scale(1.05);
+}
+
+.feature a {
+  text-decoration: none;
+  color: inherit; /* Hereda el color del contenedor */
+}
+
+.feature h2 {
+  font-size: 1.8rem;
+  color: #e94e77;
+  margin-bottom: 1rem;
+}
+
+.feature p {
+  font-size: 1rem;
+  color: snow;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  background-color: #0f1014;
+}
+
+.footer p {
+  color: snow;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 800px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature {
+    width: 80%;
+  }
+}
+
+.logoMM {
+  display: inline-block;
+  width: 500px;
+  height: 500px;
+  background-image: url("../../../assets/logo/LogoMM.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}

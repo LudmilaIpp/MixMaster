@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {NgIf} from '@angular/common';
-import {UsuariosBDDService} from '../../service/usuarios-bdd.service';
 
 @Component({
   selector: 'app-nav-bar1',
@@ -15,11 +14,8 @@ import {UsuariosBDDService} from '../../service/usuarios-bdd.service';
 })
 export class NavBar1Component implements OnInit {
 
-  constructor(private router: Router) {}
-
+  router = inject(Router);
   username: string | null = null;
-  hola: string='';
-
 
   ngOnInit(): void {
     this.username = localStorage.getItem('username');
@@ -32,8 +28,5 @@ export class NavBar1Component implements OnInit {
       window.location.reload();
     });
   }
-
-
-
 
 }

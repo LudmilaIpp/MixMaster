@@ -48,7 +48,7 @@ textarea {
 }
 
 button {
-  background-color: #3498db;
+  background-color: #e94e77;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -58,5 +58,5 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: #d43c65;
 }

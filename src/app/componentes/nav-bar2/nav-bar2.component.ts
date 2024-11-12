@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 })
 export class NavBar2Component {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  router = inject(Router);
 
   goToRandomCocktail() {
     if (this.router.url === '/coctel-random') {
@@ -21,6 +21,5 @@ export class NavBar2Component {
       this.router.navigate(['/coctel-random']);
     }
   }
-
 
 }

@@ -1,10 +1,10 @@
 <nav>
   <ul class="nav-links">
-    <li><a routerLink="home">MixMaster</a></li>
+    <li><a routerLink="home" class="logoMM"></a></li>
     <li class="right-buttons">
       <ng-container *ngIf="username; else loggedOut">
         <span>{{ username }}</span>
-        <button class="logout-button" (click)="logout()">Logout</button>
+        <button class="login-button" (click)="logout()">Logout</button>
       </ng-container>
       <ng-template #loggedOut>
         <button class="login-button" routerLink="/inicioSesion">Login</button>

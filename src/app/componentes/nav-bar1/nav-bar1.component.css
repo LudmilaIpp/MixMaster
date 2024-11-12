@@ -180,3 +180,15 @@ nav {
     margin-bottom: 1rem;
   }
 }
+
+.logoMM {
+  display: inline-block;
+  width: 75px;
+  height: 75px;
+  background-image: url("../../../assets/logo/LogoMM.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+

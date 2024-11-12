@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Coctel} from '../interfaces/coctel';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CoctelesBDDService {
 
   constructor(private httpClient: HttpClient) { }
 
-  urlBase: string = 'http://localhost:3000/cocteles';
+  urlBase = environment.urlCoctelesBDD;
 
 
   getTodosLosCoctelesBDD(): Observable<Coctel[]>{

@@ -1,46 +1,49 @@
-<div *ngIf="usuario; else loading">
-  <h2>{{ usuario.usuario }} - Listas de Cócteles</h2>
+<div *ngIf="usuario; else loading" >
+<div *ngIf="usuario.listaDelista.length !=0; else vacia" >
+  <h2>{{ usuario.usuario }} - Tus listas de Cócteles</h2>
 
-  <!-- Recorrer cada lista dentro de listaDelista -->
   <div *ngFor="let lista of usuario.listaDelista">
-    <h3>{{ lista.nombre }}</h3> <!-- Título de la lista de cócteles -->
-
-    <!-- Mostrar los cócteles de la lista -->
+    <h3>{{ lista.nombre }}</h3>
     <div *ngIf="lista.lista.length > 0; else noItems">
       <div class="cocktail-container">
         <div *ngFor="let cocktail of lista.lista" class="cocktail-card">
-          <!-- Redirigir al detalle del cóctel cuando se hace clic en la imagen -->
           <a [routerLink]="['/coctel', cocktail.strDrink]" class="cocktail-link">
             <img [src]="cocktail.strDrinkThumb" alt="{{ cocktail.strDrink }}" class="cocktail-image" />
           </a>
           <h4>{{ cocktail.strDrink }}</h4>
-
-          <!-- Botón de borrar individual -->
           <button (click)="eliminarDeLista(cocktail, lista)" class="btn-remove">
             ELIMINAR
           </button>
         </div>
       </div>
-
-      <!-- Botón para eliminar toda la lista -->
       <button (click)="eliminarTodaLaLista(lista)" class="btn-remove-all">
-        ELIMINAR LISTA
+        VACIAR LISTA
       </button>
     </div>
-
-    <!-- Mensaje si la lista está vacía -->
     <ng-template #noItems>
       <p>No hay cócteles en esta lista.</p>
-
-      <!-- Botón para eliminar la lista vacía -->
       <button *ngIf="lista.lista.length === 0" (click)="eliminarListaVacia(lista)" class="btn-remove-list">
-        Eliminar lista vacía
+        ELIMINAR LISTA
       </button>
     </ng-template>
   </div>
 </div>
+</div>
 
-<!-- Mensaje mientras se carga el usuario -->
+<ng-template #vacia>
+  <div class="loading-container">
+    <p class="loading-msg">🍸 ¡Agrega tus cócteles favoritos a tus listas!</p>
+    <button class="btn-primary" routerLink="/cocteles">
+      👉 Clickeame para ver los mejores cocteles
+    </button>
+  </div>
+</ng-template>
+
 <ng-template #loading>
-  <p>Cargando los datos del usuario...</p>
+  <div class="loading-container">
+    <p class="loading-msg">🔒 Debes iniciar sesión para guardar cocteles en listas</p>
+    <button class="btn-primary" routerLink="/inicioSesion">
+      👉 Click aquí para iniciar sesión
+    </button>
+  </div>
 </ng-template>

@@ -9,7 +9,7 @@ import {environment} from '../../environments/environment.development';
 export class ApiCoctelesService {
 
   urlRandonCoctel = environment.urlCoctelRandom;
-  urlCoctelesPorLetra = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
+  urlCoctelesPorLetra = environment.urlCoctelesPorLetra;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,12 +17,7 @@ export class ApiCoctelesService {
     return this.httpClient.get<any>(this.urlRandonCoctel);
   }
 
-  getCoctelesPorLetra(letra: string): Observable<any>{
-    return this.httpClient.get<any>(this.urlCoctelesPorLetra+letra);
-  }
-
   getCocktailByName(name: string): Observable<any> {
-    // Realiza la petición GET a la API de TheCocktailDB
     return this.httpClient.get<any>(`${this.urlCoctelesPorLetra}${name}`);
   }
 

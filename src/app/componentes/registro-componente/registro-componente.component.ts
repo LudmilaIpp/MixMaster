@@ -20,11 +20,9 @@ import { UsuariosBDDService } from '../../service/usuarios-bdd.service';
 })
 export class RegistroComponenteComponent {
 
-  constructor(private router: Router) {}
-
+  router = inject(Router);
   fb = inject(FormBuilder);
   usuarioService = inject(UsuariosBDDService)
-  todosLosUsuarios: Usuario[] = [];
 
   formulario = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],

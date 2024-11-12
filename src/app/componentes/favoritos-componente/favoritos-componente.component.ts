@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Usuario} from '../../interfaces/usuario';
 import {ActivatedRoute, RouterLink} from '@angular/router';
 import {CoctelesBDDService} from '../../service/cocteles-bdd.service';
@@ -18,15 +18,17 @@ import {NgForOf, NgIf} from '@angular/common';
 })
 export class FavoritosComponenteComponent implements OnInit {
 
+
+  route = inject(ActivatedRoute);
+  coctelesService = inject(CoctelesBDDService);
+  usuarioService = inject(UsuariosBDDService);
+
+
   usuario: Usuario | undefined;
   listaDeFavs: any[] = [];
   cocktailName: string | null = null;
 
-  constructor(
-    private route: ActivatedRoute,
-    private coctelesService: CoctelesBDDService,
-    private usuarioService: UsuariosBDDService
-  ) {}
+
 
   ngOnInit(): void {
     const username = localStorage.getItem('username');
@@ -37,11 +39,12 @@ export class FavoritosComponenteComponent implements OnInit {
           this.listaDeFavs = this.usuario.listaFavoritos || [];
         }
       });
+    }else {
+      this.usuario = undefined;
     }
 
     this.route.paramMap.subscribe(params => {
       this.cocktailName = params.get('strDrink');
-      // Aquí podrías cargar los detalles del cóctel con este ID
     });
 
 

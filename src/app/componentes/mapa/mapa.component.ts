@@ -39,21 +39,21 @@ export class MapaComponent implements OnInit {
 
   ngOnInit(): void {
     this.initMap();
-    this.loadCocktails('argentina'); // Cargar cócteles por defecto para Argentina
+    this.cargaCocteles('argentina'); // cargamos los cocteles para argentina
   }
 
-  // Inicializar el mapa con Leaflet
+  // iniciamos el mapa
   private initMap(): void {
-    this.map = L.map('map').setView([40.7128, -74.0060], 3); // Coordenadas de Nueva York
+    this.map = L.map('map').setView([-34.61315, -58.37723], 3); //le seteamos la vista en arg
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(this.map);
   }
 
-  // Cargar los cócteles de un país seleccionado
-  loadCocktails(country: string): void {
-    // Limpiar cualquier marcador previo en el mapa
+  // cargamos los cocteles de un pais
+  cargaCocteles(country: string): void {
+    // limpiamos popUps
     this.map.eachLayer((layer) => {
       if (layer instanceof L.Marker) {
         this.map.removeLayer(layer);
@@ -69,21 +69,20 @@ export class MapaComponent implements OnInit {
     }
   }
 
-  // Función para agregar un cóctel al mapa
   private agregarCoctel(nombre: string, lat: number, lon: number): void {
     this.cocktailService.getCocktailByName(nombre).subscribe(data => {
       if (data.drinks) {
-        const drink = data.drinks[0]; // Suponemos que se encontró al menos un cóctel
+        const drink = data.drinks[0];
 
-        // Crear un ícono personalizado con la imagen del cóctel
+        // creamos el popUp
         const cocktailIcon = L.icon({
-          iconUrl: drink.strDrinkThumb,  // URL de la imagen del cóctel
+          iconUrl: drink.strDrinkThumb,
           iconSize: [50, 50],            // Tamaño del ícono
           iconAnchor: [25, 50],          // Punto donde se ancla el ícono
           popupAnchor: [0, -50]          // Posición del popup respecto al ícono
         });
 
-        // Agregar marcador al mapa con la imagen del cóctel
+        // agregamos el popUp
         const marker = L.marker([lat, lon], { icon: cocktailIcon })
           .addTo(this.map)
           .bindPopup(`
@@ -99,10 +98,10 @@ export class MapaComponent implements OnInit {
     });
   }
 
-  // Llamado cuando se cambia el país en el dropdown
-  onCountryChange(event: any): void {
+  // cambiamos el pais en el menu desplegable
+  cambiarPais(event: any): void {
     const selectedCountry = event.target.value;
-    this.loadCocktails(selectedCountry);  // Cargar cócteles del país seleccionado
+    this.cargaCocteles(selectedCountry);
   }
 }
 
