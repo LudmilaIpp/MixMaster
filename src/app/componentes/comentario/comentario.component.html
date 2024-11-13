@@ -17,7 +17,7 @@
   </ng-template>
 
   <div *ngIf="!localStorage.getItem('username')">
-    <p>Inicia sesión para dejar un comentario.</p>
+    <a routerLink="/inicioSesion">Inicia sesión para dejar un comentario.</a>
   </div>
   <div *ngIf="localStorage.getItem('username')">
     <textarea [(ngModel)]="nuevoComentario" placeholder="Escribe tu comentario..."></textarea>

@@ -6,6 +6,7 @@ import {ComentarioComponent} from '../comentario/comentario.component';
 import {UsuariosBDDService} from '../../service/usuarios-bdd.service';
 import {Usuario} from '../../interfaces/usuario';
 import {FormsModule} from '@angular/forms';
+import {ApiCoctelesService} from '../../service/api-cocteles.service';
 
 
 @Component({
@@ -27,6 +28,7 @@ export class CartaCoctelComponent  implements OnInit {
   coctelesService = inject(CoctelesBDDService);
   usuarioService = inject(UsuariosBDDService);
   elementRef = inject(ElementRef);
+  apiCoctelesService = inject(ApiCoctelesService);
 
 
   cocktail: any;

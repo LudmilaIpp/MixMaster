@@ -3,6 +3,7 @@ import {NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ComentariosBDDService} from '../../service/comentarios-bdd.service';
 import {Comentario} from '../../interfaces/comentario';
+import {RouterLink} from '@angular/router';
 
 class AuthService {
 }
@@ -13,7 +14,8 @@ class AuthService {
   imports: [
     NgIf,
     NgForOf,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   templateUrl: './comentario.component.html',
   styleUrl: './comentario.component.css'
