@@ -111,6 +111,7 @@ h3 {
 }
 
 .loading-msg {
+  font-family: 'Liberation Sans', sans-serif;
   font-size: 1.2rem;
   color: #555;
   margin-bottom: 15px;

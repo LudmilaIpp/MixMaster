@@ -103,6 +103,7 @@ h4 {
 
 /* Mensajes */
 .no-favorites-msg, .loading-msg {
+  font-family: 'Liberation Sans', sans-serif;
   text-align: center;
   color: #777;
   font-size: 1.2rem;

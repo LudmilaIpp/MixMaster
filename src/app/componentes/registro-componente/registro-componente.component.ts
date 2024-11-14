@@ -25,8 +25,8 @@ export class RegistroComponenteComponent {
   usuarioService = inject(UsuariosBDDService)
 
   formulario = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-    password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
+    username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
     confirmPassword: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]]
   }, { validator: this.passwordMatchValidator });
 
