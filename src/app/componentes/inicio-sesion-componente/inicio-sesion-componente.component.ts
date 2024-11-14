@@ -21,6 +21,7 @@ export class InicioSesionComponenteComponent {
 
   router = inject(Router);
   usuarioService = inject(UsuariosBDDService);
+  usuario = localStorage.getItem('username');
 
   loginModel ={
     username: '',
@@ -64,4 +65,5 @@ export class InicioSesionComponenteComponent {
     });
   }
 
+  protected readonly localStorage = localStorage;
 }

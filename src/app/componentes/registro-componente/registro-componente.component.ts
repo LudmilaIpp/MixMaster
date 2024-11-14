@@ -23,6 +23,7 @@ export class RegistroComponenteComponent {
   router = inject(Router);
   fb = inject(FormBuilder);
   usuarioService = inject(UsuariosBDDService)
+  usuario = localStorage.getItem('usuario');
 
   formulario = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],

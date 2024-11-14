@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container"  *ngIf="!usuario; else loading">
   <h2>🔒 Iniciar Sesión</h2>
   <form (ngSubmit)="onLogin()" #loginForm="ngForm">
     <!-- Campo de Usuario -->
@@ -48,3 +48,9 @@
     <p>¿No tienes cuenta? <a routerLink="/registro">Regístrate aquí</a></p>
   </div>
 </div>
+
+<ng-template #loading>
+  <div class="container">
+    Ya tenes la sesion iniciada.
+  </div>
+</ng-template>
