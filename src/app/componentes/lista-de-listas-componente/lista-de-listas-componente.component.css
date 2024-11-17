@@ -49,7 +49,7 @@ h3 {
   color: #888;
 }
 .btn-remove {
-  background-color: #f44336; /* Rojo vibrante */
+  background-color: #f44336;
   color: white;
   border: none;
   border-radius: 5px;
@@ -80,9 +80,9 @@ h3 {
   background-color: #d32f2f;
   color: white;
 }
-/* Estilo para el botón de eliminar lista vacía */
+
 .btn-remove-list {
-  background-color: #ff9800; /* Color naranja */
+  background-color: #ff9800;
   color: white;
   border: none;
   border-radius: 5px;

@@ -66,4 +66,5 @@ export class InicioSesionComponenteComponent {
   }
 
   protected readonly localStorage = localStorage;
+
 }

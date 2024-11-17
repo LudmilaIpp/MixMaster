@@ -1,6 +1,5 @@
 @import "leaflet/dist/leaflet.css";
 
-/* Contenedor principal para centrar el mapa y el selector */
 .map-container {
   max-width: 900px;
   margin: 0 auto;
@@ -10,7 +9,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para el selector de país */
 .select-container {
   display: flex;
   align-items: center;
@@ -34,7 +32,6 @@ label {
   cursor: pointer;
 }
 
-/* Estilo del mapa */
 #map {
   width: 100%;
   height: 600px;

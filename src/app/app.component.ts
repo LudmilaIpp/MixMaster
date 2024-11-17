@@ -16,7 +16,3 @@ import { bootstrapApplication } from '@angular/platform-browser';
 export class AppComponent {
 
 }
-
-bootstrapApplication(AppComponent, {
-  providers: []
-});

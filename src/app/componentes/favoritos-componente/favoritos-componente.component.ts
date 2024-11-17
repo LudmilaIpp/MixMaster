@@ -20,7 +20,6 @@ export class FavoritosComponenteComponent implements OnInit {
 
 
   route = inject(ActivatedRoute);
-  coctelesService = inject(CoctelesBDDService);
   usuarioService = inject(UsuariosBDDService);
 
 

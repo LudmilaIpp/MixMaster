@@ -1,4 +1,3 @@
-/* Estilos generales */
 .favorites-title {
   font-size: 2rem;
   font-family: 'Liberation Sans', sans-serif;
@@ -87,7 +86,7 @@ h4 {
 }
 
 .fav-button {
-  background-color: #f44336; /* Rojo vibrante */
+  background-color: #f44336;
   color: white;
   border: none;
   border-radius: 5px;
@@ -101,7 +100,6 @@ h4 {
   background-color: #d32f2f;
 }
 
-/* Mensajes */
 .no-favorites-msg, .loading-msg {
   font-family: 'Liberation Sans', sans-serif;
   text-align: center;

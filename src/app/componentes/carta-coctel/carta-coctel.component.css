@@ -1,4 +1,3 @@
-/* Estilos generales */
 .cocktail-image {
   max-width: 100%;
   height: auto;
@@ -7,7 +6,6 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Título del cóctel */
 h2 {
   font-size: 2rem;
   font-family: 'Liberation Sans', sans-serif;
@@ -78,6 +76,11 @@ button:focus {
   outline: none;
 }
 
+button {
+  display: inline-block;
+  margin-top: 20px;
+}
+
 /* Contenedor principal */
 div {
   max-width: 800px;
@@ -95,18 +98,12 @@ ng-template p {
   color: #666;
 }
 
-/* Componente de comentarios */
+/*comentarios */
 app-comentario {
   margin-top: 30px;
   border-top: 1px solid #ccc;
   padding-top: 20px;
   text-align: center;
-}
-
-/* Asegurando que los botones no se amontonen */
-button {
-  display: inline-block;
-  margin-top: 20px;
 }
 
 .modal {

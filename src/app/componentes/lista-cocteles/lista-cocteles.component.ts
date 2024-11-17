@@ -22,7 +22,6 @@ export class ListaCoctelesComponent implements OnInit {
 
 
   coctelesBDD = inject(CoctelesBDDService);
-  cocktailService = inject(ApiCoctelesService);
 
   Listacocktail: any[] = [];
   filteredCocktails: any[] = [];
@@ -73,45 +72,6 @@ export class ListaCoctelesComponent implements OnInit {
     this.filterAlcohol = '';
     this.filteredCocktails = this.Listacocktail;
   }
-
-
-  /*
-  letras=['a','e','i','o','u'];
-  getCoctelesPorLetraDesdeAPI(): void {
-      this.cocktailService.getCoctelesPorLetra(this.letras[0]).subscribe({
-        next: (data) => {
-          this.Listacocktail = data.drinks;
-          this.modificarIDCocteles();
-          console.log(this.Listacocktail);
-          this.guardarCoctelesJSON();
-        },
-        error: (error) => {
-          console.error('Error al obtener los cócteles:', error);
-        }
-      });
-  }
-
-  guardarCoctelesJSON() {
-    this.Listacocktail.slice(0, 50).forEach((coc: Coctel) => {
-      this.coctelesBDD.postCoctelesBDD(coc).subscribe({
-        next: () => {
-          console.log('coctel guardado');
-        }, error: (e) => {
-          console.error(e);
-        }
-      });
-    })
-  }
-
-   modificarIDCocteles()
-  {
-    this.Listacocktail.forEach((coctel, index) => {
-      coctel.id = index + 1; // Asigna un ID incremental
-    });
-  }
-  */
-
-
 
 
 }
